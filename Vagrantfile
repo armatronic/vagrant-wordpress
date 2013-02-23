@@ -32,7 +32,7 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 4567
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "chef/cookbooks"
+    chef.cookbooks_path = "cookbooks"
     chef.json = {
       :ubuntu => {
         :archive_url             => "http://us.archive.ubuntu.com/ubuntu/",
@@ -46,17 +46,26 @@ Vagrant::Config.run do |config|
       },
       :wordpress => {
         :cli_install_dir => "/opt/wp-cli",
+        :site_title      => "Wordpress Site",
+        # Should default to FQDN if not otherwise set.
         :url             => "192.168.33.10",
+        :admin           => {
+          # Leave @ off? add FQDN or URL to end.
+          :email    => 'admin@localhost.localdomain',
+          :user     => 'admin',
+          :password => 'admin',
+        },
         :db => {
           :password => 'blah'
         },
-        :cli_commands    => [
-          'plugin install wordpress-seo --activate',
-          'theme install easel --activate',
-        ],
+        :cli_commands => [],
+      },
+      :wordpress_cli => {
+        # Uses same commands as wordpress install CLI?
+        :cli_install_dir => "/opt/wp-cli",
       }
     }
-    chef.add_recipe "ubuntu"
+    # chef.add_recipe "ubuntu"
     chef.add_recipe "wordpress_cli"
   end
 end
