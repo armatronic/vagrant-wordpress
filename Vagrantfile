@@ -45,20 +45,12 @@ Vagrant::Config.run do |config|
         :server_debian_password => "something",
       },
       :wordpress => {
-        :cli_install_dir => "/opt/wp-cli",
         :site_title      => "Wordpress Site",
         # Should default to FQDN if not otherwise set.
         :url             => "192.168.33.10",
-        :admin           => {
-          # Leave @ off? add FQDN or URL to end.
-          :email    => 'admin@localhost.localdomain',
-          :user     => 'admin',
-          :password => 'admin',
-        },
         :db => {
           :password => 'blah'
         },
-        :cli_commands => [],
       },
       :wordpress_cli => {
         # Uses same commands as wordpress install CLI?
