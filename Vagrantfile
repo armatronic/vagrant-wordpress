@@ -35,8 +35,8 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = "cookbooks"
     chef.json = {
       :ubuntu => {
-        :archive_url             => "http://us.archive.ubuntu.com/ubuntu/",
-        :security_url            => "http://us.archive.ubuntu.com/ubuntu/",
+        :archive_url             => "http://au.archive.ubuntu.com/ubuntu/",
+        :security_url            => "http://au.archive.ubuntu.com/ubuntu/",
         :include_source_packages => false,
       },
       :mysql => {
@@ -65,7 +65,7 @@ Vagrant::Config.run do |config|
         :cli_install_dir => "/opt/wp-cli",
       }
     }
-    # chef.add_recipe "ubuntu"
-    chef.add_recipe "wordpress_cli"
+    chef.add_recipe "ubuntu"
+    chef.add_recipe "wordpress::install_cli"
   end
 end
