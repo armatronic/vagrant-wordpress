@@ -45,17 +45,12 @@ Vagrant::Config.run do |config|
         :server_debian_password => "something",
       },
       :wordpress => {
-        :site_title      => "Wordpress Site",
-        # Should default to FQDN if not otherwise set.
-        :url             => "192.168.33.10",
+        :url => "192.168.33.10",
         :db => {
           :password => 'blah'
         },
+        :dir => "/vagrant/wordpress"
       },
-      :wordpress_cli => {
-        # Uses same commands as wordpress install CLI?
-        :cli_install_dir => "/opt/wp-cli",
-      }
     }
     chef.add_recipe "ubuntu"
     chef.add_recipe "wordpress::install_cli"
